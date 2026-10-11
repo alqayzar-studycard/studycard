@@ -7,6 +7,9 @@ import { defineConfig } from "vite"
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig(({ command }) => ({
+  base: command === "build" && process.env.GITHUB_REPOSITORY
+    ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+    : "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
