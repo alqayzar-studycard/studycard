@@ -106,7 +106,7 @@ export function FolderPage() {
               <p className="mt-1 text-sm text-muted-foreground">{flashcards.length === 0 ? "Flashcards for this folder will appear here." : "Try choosing different tags."}</p>
             </div>
           ) : (
-            <div className="grid gap-2 sm:grid-cols-2">
+            <div className="grid gap-2 sm:grid-cols-2 pb-[12rem]">
               {filteredFlashcards.map((flashcard) => (
                 <FlashcardCard
                   key={flashcard.id}
