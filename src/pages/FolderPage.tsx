@@ -50,7 +50,8 @@ export function FolderPage() {
     : flashcards.filter((flashcard) => selectedTagIds.every((tag) => flashcard.tags?.includes(tag)))
 
   const handleFlashcardListScroll = (event: UIEvent<HTMLElement>) => {
-    setIsTitleCompact(event.currentTarget.scrollTop > 0)
+    const shouldUseCompactTitle = event.currentTarget.scrollTop > 0
+    setIsTitleCompact((currentValue) => currentValue === shouldUseCompactTitle ? currentValue : shouldUseCompactTitle)
   }
 
   return (
@@ -58,12 +59,12 @@ export function FolderPage() {
       <section className="relative z-0 bg-primary text-primary-foreground">
         <div className="mx-auto max-w-5xl px-5 py-4 sm:px-8 sm:py-5">
           <section className="pt-3 pb-8 sm:pt-5 sm:pb-10" aria-labelledby="folder-title">
-            <div className={`relative min-w-0 transition-[height] duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "h-8" : "h-28"}`}>
+            <div className={`relative min-w-0 transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "h-8" : "h-28"}`}>
               <Link className="absolute left-0 top-0 inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80" to="/">
                 <ArrowLeft className="size-4" aria-hidden="true" />
                 All folders
               </Link>
-              <div className={`absolute min-w-0 overflow-x-auto transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "left-28 right-0 top-0" : "left-0 right-0 top-10"}`}>
+              <div className={`absolute min-w-0 overflow-x-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "left-28 right-0 top-0" : "left-0 right-0 top-10"}`}>
                 <h1 id="folder-title" className={`w-max font-display font-black leading-none tracking-tight transition-[font-size] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "text-2xl sm:text-3xl" : "text-5xl sm:text-6xl"}`}>{title}</h1>
               </div>
             </div>

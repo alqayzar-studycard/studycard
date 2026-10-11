@@ -8,6 +8,7 @@ import { useStudyData } from "@/contexts/StudyDataContext"
 import type { Flashcard, ImageSelection, Tag } from "@/lib/db"
 import { getRandomTagColor, getTagColorClass } from "@/lib/tag-styles"
 import { dialogGlassStyle } from "@/lib/glass-styles"
+import { compressImage } from "@/lib/image-compression"
 
 type NewFlashcardDialogProps = {
   isOpen: boolean
@@ -29,6 +30,7 @@ function FlashcardImageInput(props: FlashcardImageInputProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+  const [isCompressing, setIsCompressing] = useState(false)
 
   useEffect(() => {
     const blob = props.image.blob ?? (props.image.imageId ? getImageById(props.image.imageId)?.blob : null)
@@ -48,20 +50,31 @@ function FlashcardImageInput(props: FlashcardImageInputProps) {
     if (inputRef.current) inputRef.current.value = ""
   }
 
+  const handleImageChange = async (file: File | undefined) => {
+    if (!file) {
+      props.onChange({ imageId: null, blob: null })
+      return
+    }
+
+    setIsCompressing(true)
+    props.onChange({ imageId: null, blob: await compressImage(file) })
+    setIsCompressing(false)
+  }
+
   return (
     <div className="mt-5 flex items-center gap-2">
       <input
         ref={inputRef} id={props.id} type="file" accept="image/*"
         className="sr-only"
-        onChange={(event) => props.onChange({ imageId: null, blob: event.target.files?.[0] ?? null })}
+        onChange={(event) => void handleImageChange(event.target.files?.[0])}
       />
       <Button
         type="button" variant="ghost"
-        onClick={() => inputRef.current?.click()}
+        onClick={() => inputRef.current?.click()} disabled={isCompressing}
         className="flex-1 border border-primary/35 bg-primary font-bold text-white hover:bg-sage"
       >
         <ImagePlus className="size-4" aria-hidden="true" />
-        {props.label}
+        {isCompressing ? "Compressing…" : props.label}
       </Button>
       {imageUrl && (
         <>

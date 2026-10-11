@@ -120,6 +120,8 @@ html,
 }
 
 .flashcard-surface {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 12rem;
   background-color: rgb(251 253 252 / 62%);
   background-image:
     radial-gradient(rgb(255 255 255 / 42%) 0.6px, transparent 0.8px),
