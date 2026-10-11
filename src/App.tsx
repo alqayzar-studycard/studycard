@@ -1,5 +1,8 @@
+import { AppRoutes } from "@/routes"
+import { StudyDataProvider } from "@/contexts/StudyDataContext"
+
 function App() {
-  return <main className="min-h-screen bg-blue-600" />
+  return <StudyDataProvider><AppRoutes /></StudyDataProvider>
 }
 
 export default App

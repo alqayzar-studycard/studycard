@@ -1,17 +1,89 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Nyght Serif";
+  src: url("./assets/fonts/fonts/WEB/NyghtSerif-Light.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Nyght Serif";
+  src: url("./assets/fonts/fonts/WEB/NyghtSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Nyght Serif";
+  src: url("./assets/fonts/fonts/WEB/NyghtSerif-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Nyght Serif";
+  src: url("./assets/fonts/fonts/WEB/NyghtSerif-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Nyght Serif";
+  src: url("./assets/fonts/fonts/WEB/NyghtSerif-Dark.woff2") format("woff2");
+  font-weight: 900;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-forest: var(--forest);
+  --color-secondary: var(--secondary);
+  --color-sage: var(--sage);
+  --color-list-hover: var(--list-hover);
+  --color-destructive: var(--destructive);
+  --color-study: var(--study);
+  --color-cancel: var(--cancel);
+  --color-cancel-foreground: var(--cancel-foreground);
+  --color-orange: var(--orange);
+  --color-yellow: var(--yellow);
+  --color-green-alt: var(--green-alt);
 }
 
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-}
-
-* {
-  border-color: color-mix(in oklab, currentColor 15%, transparent);
+  --radius: 0.1rem;
+  --primary: #136f63;
+  --primary-foreground: #ffffff;
+  --accent: #d7ebe2;
+  --input: rgb(19 111 99 / 25%);
+  --ring: #4f9b90;
+  --muted-foreground: #5a756f;
+  --canvas: #e8f3ef;
+  --ink: #123f39;
+  --paper: #fbfdfc;
+  --forest: #136f63;
+  --secondary: #7F6269;
+  --sage: #cfe7de;
+  --list-hover: #edf7f3;
+  --destructive: #D0767E;
+  --study: #698FB5;
+  --cancel: #DCDFE5;
+  --cancel-foreground: #4b5563;
+  --orange: #AF5D31;
+  --yellow: #B09231;
+  --green-alt: #0B7422;
+  --folder-gold: #b9dfd4;
+  --folder-terracotta: #a8d6ca;
+  --folder-blue: #cce8e1;
+  --folder-lilac: #d9eee8;
+  --font-ui: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -20,4 +92,67 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
+  font-family: "Nyght Serif", Georgia, serif;
+  overflow: hidden;
+}
+
+html,
+#root {
+  height: 100%;
+}
+
+.font-display {
+  font-family: "Nyght Serif", Georgia, serif;
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+.app-surface {
+  background-color: var(--canvas);
+  background-image:
+    radial-gradient(rgb(255 255 255 / 30%) 0.6px, transparent 0.8px),
+    radial-gradient(rgb(19 111 99 / 9%) 0.6px, transparent 0.8px);
+  background-position: 0 0, 3px 3px;
+  background-size: 6px 6px;
+}
+
+.flashcard-surface {
+  background-color: color-mix(in srgb, var(--paper) 76%, transparent);
+  background-image:
+    radial-gradient(rgb(255 255 255 / 42%) 0.6px, transparent 0.8px),
+    radial-gradient(rgb(19 111 99 / 8%) 0.6px, transparent 0.8px);
+  background-position: 0 0, 3px 3px;
+  background-size: 6px 6px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.flashcard-copy--collapsed {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.dialog-surface {
+  background-color: color-mix(in srgb, var(--paper) 92%, transparent);
+  background-image:
+    radial-gradient(rgb(255 255 255 / 48%) 0.6px, transparent 0.8px),
+    radial-gradient(rgb(19 111 99 / 8%) 0.6px, transparent 0.8px);
+  background-position: 0 0, 3px 3px;
+  background-size: 6px 6px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.grain-overlay {
+  background-image:
+    radial-gradient(rgb(255 255 255 / 24%) 0.6px, transparent 0.8px),
+    radial-gradient(rgb(0 0 0 / 10%) 0.6px, transparent 0.8px);
+  background-position: 0 0, 3px 3px;
+  background-size: 6px 6px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
