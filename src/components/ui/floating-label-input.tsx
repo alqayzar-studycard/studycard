@@ -18,7 +18,7 @@ type FloatingLabelTextareaProps = React.ComponentPropsWithoutRef<typeof Textarea
 function FloatingLabelField(props: { label: string; fieldId: string; containerClassName?: string; children: React.ReactNode }) {
   return (
     <div className={cn("relative", props.containerClassName)}>
-      <label className="absolute -top-2 left-3 z-10 px-1 text-sm font-black text-secondary bg-inherit" htmlFor={props.fieldId}>
+      <label className="absolute -top-2 left-3 z-10 px-1 text-sm font-black text-secondary" htmlFor={props.fieldId}>
         {props.label}
       </label>
       {props.children}
@@ -49,7 +49,7 @@ const FloatingLabelTextarea = React.forwardRef<HTMLTextAreaElement, FloatingLabe
       <Textarea
         ref={ref}
         id={textareaId}
-        className={cn("min-h-28 resize-y bg-paper px-4 py-3 text-lg font-black", className)}
+        className={cn("min-h-28 resize-y bg-paper border-2 px-4 py-3 text-lg font-black", className)}
         {...textareaProps}
       />
     </FloatingLabelField>

@@ -111,7 +111,8 @@ export async function deleteFolder(folderId: string) {
 }
 
 export async function getFlashcardsForFolder(folderId: string) {
-  return (await dbPromise).getAll("flashcards", getFolderRange(folderId))
+  const flashcards = await (await dbPromise).getAll("flashcards", getFolderRange(folderId))
+  return flashcards.sort((first, second) => second.createdAt - first.createdAt)
 }
 
 async function releaseImage(transaction: any, imageId?: string | null) {

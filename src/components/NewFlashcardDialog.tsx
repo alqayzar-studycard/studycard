@@ -201,9 +201,9 @@ export function NewFlashcardDialog(props: NewFlashcardDialogProps) {
 
   return (
     <Dialog open={props.isOpen} onOpenChange={(open) => !open && closeDialog()}>
-      <DialogContent className="dialog-surface flex h-dvh w-dvw max-h-none max-w-none flex-col gap-0 overflow-hidden rounded-none border-0 p-6 sm:p-10" style={dialogGlassStyle} onOpenAutoFocus={(event) => event.preventDefault()}>
+      <DialogContent className="dialog-surface flex h-[min(44rem,calc(100dvh-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" style={dialogGlassStyle} onOpenAutoFocus={(event) => event.preventDefault()}>
         <DialogHeader className="shrink-0 pr-10">
-          <DialogTitle className="font-display text-3xl font-bold text-primary tracking-tight">{isEditing ? "Edit flashcard" : "Add a card"}</DialogTitle>
+          <DialogTitle className="font-display text-2xl font-black text-primary tracking-tight">{isEditing ? "Edit card" : "New card"}</DialogTitle>
         </DialogHeader>
 
         <form className=" flex min-h-0 flex-1 flex-col" onSubmit={handleSubmit}>
@@ -221,15 +221,15 @@ export function NewFlashcardDialog(props: NewFlashcardDialogProps) {
             <Button
               type="button" variant="ghost"
               onClick={closeDialog}
-              className="flex-1 bg-cancel font-bold text-cancel-foreground hover:bg-cancel/80"
+              className="flex-1 bg-cancel font-black text-cancel-foreground hover:bg-cancel/80"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="font-bold flex-1"
+              className="font-black flex-1"
             >
-              {isEditing ? "Save changes" : "Create flashcard"}
+              {isEditing ? "Save" : "Create"}
             </Button>
           </DialogFooter>
         </form>
