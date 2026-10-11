@@ -11,6 +11,7 @@ import { SelectedTags } from "@/components/SelectedTags"
 import { Button } from "@/components/ui/button"
 import { useStudyData } from "@/contexts/StudyDataContext"
 import type { Flashcard, ImageSelection, Tag as FlashcardTag } from "@/lib/db"
+import { cardGlassStyle } from "@/lib/glass-styles"
 
 export function FolderPage() {
   const { folderId = "" } = useParams()
@@ -96,7 +97,7 @@ export function FolderPage() {
               <Link className="mt-3 inline-block text-sm font-bold text-forest underline" to="/">Return to folders</Link>
             </div>
           ) : filteredFlashcards.length === 0 ? (
-            <div className="flashcard-surface flex min-h-36 flex-col items-center justify-center border-2 border-dashed border-primary/45 px-5 py-6 text-center">
+            <div className="flashcard-surface flex min-h-36 flex-col items-center justify-center border-2 border-dashed border-primary/45 px-5 py-6 text-center" style={cardGlassStyle}>
               <span className="grid size-10 place-items-center rounded-[var(--radius)] bg-sage text-forest">
                 <Layers className="size-5" strokeWidth={1.75} aria-hidden="true" />
               </span>

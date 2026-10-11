@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@tailwind base;
 
 @font-face {
   font-family: "Nyght Serif";

@@ -6,6 +6,7 @@ import { FlashcardActionsDropdown } from "@/components/FlashcardActionsDropdown"
 import { useStudyData } from "@/contexts/StudyDataContext"
 import type { Flashcard } from "@/lib/db"
 import { getTagColorClass } from "@/lib/tag-styles"
+import { cardGlassStyle } from "@/lib/glass-styles"
 import { cn } from "@/lib/utils"
 
 type FlashcardCardProps = {
@@ -55,7 +56,7 @@ export function FlashcardCard(props: FlashcardCardProps) {
   }
 
   return (
-    <article className="flashcard-surface min-w-0 cursor-pointer border-4 border-primary/40 p-4 pt-2" role="button" tabIndex={0} aria-expanded={isExpanded} onClick={toggleExpanded} onKeyDown={handleKeyDown}>
+    <article className="flashcard-surface min-w-0 cursor-pointer border-4 border-primary/40 p-4 pt-2" style={cardGlassStyle} role="button" tabIndex={0} aria-expanded={isExpanded} onClick={toggleExpanded} onKeyDown={handleKeyDown}>
       <div className="flex justify-end gap-1" onClick={(event) => event.stopPropagation()} onKeyDown={(event) => event.stopPropagation()}>
         <button type="button" onClick={toggleExpanded} className="grid size-7 place-items-center rounded-[var(--radius)] text-forest hover:bg-sage" aria-label={isExpanded ? "Collapse flashcard" : "Expand flashcard"}>
           <ChevronDown className={`size-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} aria-hidden="true" />
