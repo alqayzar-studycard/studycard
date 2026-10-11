@@ -1,0 +1,20 @@
+{
+  "id": "/studycard/studycard-pwa-v1",
+  "name": "Studycard",
+  "short_name": "Studycard",
+  "description": "A folder-based flashcard study app.",
+  "lang": "en",
+  "start_url": "/studycard/",
+  "scope": "/studycard/",
+  "display": "standalone",
+  "background_color": "#e8f3ef",
+  "theme_color": "#136f63",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
