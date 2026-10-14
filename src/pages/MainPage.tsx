@@ -26,7 +26,7 @@ export function MainPage() {
   }
 
   return (
-    <main className="app-surface flex h-dvh flex-col overflow-hidden text-ink">
+    <main className="flex h-dvh flex-col overflow-hidden bg-paper text-ink">
       <section className="relative z-0 bg-primary text-primary-foreground">
         <div className="mx-auto max-w-5xl px-5 py-4 sm:px-8 sm:py-5">
           <header className="border-b-none border-primary-foreground/30 pb-4 sm:pb-5">

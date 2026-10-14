@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { FolderActionsDropdown } from "@/components/FolderActionsDropdown"
 import type { Folder } from "@/lib/db"
 import { getTagBackgroundClass } from "@/lib/tag-styles"
-import { cardGlassStyle } from "@/lib/glass-styles"
 
 type FolderCardProps = {
   folder: Folder
@@ -14,7 +13,7 @@ type FolderCardProps = {
 
 export function FolderCard(props: FolderCardProps) {
   return (
-    <article className="flashcard-surface group flex min-w-0 items-center gap-3 rounded-[var(--radius)] border-4 border-primary/40 p-2 pr-3 transition-colors hover:bg-list-hover" style={cardGlassStyle}>
+    <article className="flashcard-surface group flex min-w-0 items-center gap-3 rounded-[var(--radius)] border-4 border-primary/40 p-2 pr-3 transition-colors hover:bg-list-hover">
       <Link to={`/${props.folder.id}`} className="flex min-w-0 flex-1 items-center gap-3">
         <span className={`grid size-9 shrink-0 place-items-center opacity-70 rotate-3 rounded-[var(--radius)] ${getTagBackgroundClass(props.folder.color)}`}>
           <BookOpen className="size-4 -rotate-6" strokeWidth={2} aria-hidden="true" />

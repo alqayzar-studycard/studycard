@@ -1,17 +1,16 @@
-import { useEffect, useState, type UIEvent } from "react"
-import { ArrowLeft, GraduationCap, Layers, Plus, Tag } from "lucide-react"
+import { useEffect, useState } from "react"
+import { GraduationCap, Layers, Plus } from "lucide-react"
 import { Link, useParams } from "react-router-dom"
 
-import { WaveDivider } from "@/components/WaveDivider"
+import { FolderHeader } from "@/components/FolderHeader"
 import { PageFooter } from "@/components/PageFooter"
 import { NewFlashcardDialog } from "@/components/NewFlashcardDialog"
 import { FlashcardCard } from "@/components/FlashcardCard"
 import { TagsDialog } from "@/components/TagsDialog"
-import { SelectedTags } from "@/components/SelectedTags"
 import { Button } from "@/components/ui/button"
 import { useStudyData } from "@/contexts/StudyDataContext"
+import { useFolderHeaderScroll } from "@/hooks/useFolderHeaderScroll"
 import type { Flashcard, ImageSelection, Tag as FlashcardTag } from "@/lib/db"
-import { cardGlassStyle } from "@/lib/glass-styles"
 
 export function FolderPage() {
   const { folderId = "" } = useParams()
@@ -21,11 +20,10 @@ export function FolderPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isTagsDialogOpen, setIsTagsDialogOpen] = useState(false)
   const [editingFlashcard, setEditingFlashcard] = useState<Flashcard | null>(null)
-  const [isTitleCompact, setIsTitleCompact] = useState(false)
+  const { headerRef, listRef, compensationRef } = useFolderHeaderScroll(folderId)
 
   useEffect(() => {
     setIsTagsDialogOpen(false)
-    setIsTitleCompact(false)
     void loadFolderData(folderId)
   }, [folderId, loadFolderData])
 
@@ -49,48 +47,15 @@ export function FolderPage() {
     ? flashcards
     : flashcards.filter((flashcard) => selectedTagIds.every((tag) => flashcard.tags?.includes(tag)))
 
-  const handleFlashcardListScroll = (event: UIEvent<HTMLElement>) => {
-    const shouldUseCompactTitle = event.currentTarget.scrollTop > 0
-    setIsTitleCompact((currentValue) => currentValue === shouldUseCompactTitle ? currentValue : shouldUseCompactTitle)
+  const openTagsDialog = () => {
+    setIsTagsDialogOpen(true)
   }
 
   return (
-    <main className="app-surface flex h-dvh flex-col overflow-hidden text-ink">
-      <section className="relative z-0 bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-5xl px-5 py-4 sm:px-8 sm:py-5">
-          <section className="pt-3 pb-8 sm:pt-5 sm:pb-10" aria-labelledby="folder-title">
-            <div className={`relative min-w-0 transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "h-8" : "h-28"}`}>
-              <Link className="absolute left-0 top-0 inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80" to="/">
-                <ArrowLeft className="size-4" aria-hidden="true" />
-                All folders
-              </Link>
-              <div className={`absolute min-w-0 overflow-x-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "left-28 right-0 top-0" : "left-0 right-0 top-10"}`}>
-                <h1 id="folder-title" className={`w-max font-display font-black leading-none tracking-tight transition-[font-size] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isTitleCompact ? "text-2xl sm:text-3xl" : "text-5xl sm:text-6xl"}`}>{title}</h1>
-              </div>
-            </div>
-            <div className="mt-4 min-w-0">
-              <div className="flex items-center gap-3">
-                <Button type="button" variant="ghost" onClick={() => setIsTagsDialogOpen(true)} className="relative h-8 border border-primary-foreground/35 bg-primary-foreground/10 px-3 font-bold text-primary-foreground hover:bg-primary-foreground/20">
-                  <Tag className="size-3.5" aria-hidden="true" />
-                  Tags
-                  {selectedTagIds.length > 0 && (
-                    <span className="absolute -right-2 -top-2 grid size-5 place-items-center rounded-full bg-paper text-xs font-black text-primary shadow-sm">
-                      {selectedTagIds.length}
-                    </span>
-                  )}
-                </Button>
-                <p className="rounded-[var(--radius)] text-sm font-bold">
-                  {filteredFlashcards.length} cards
-                </p>
-              </div>
-              <SelectedTags tagIds={selectedTagIds} onRemove={(tagId) => void toggleSelectedTag(tagId)} />
-            </div>
-          </section>
-        </div>
-        <WaveDivider className="fill-primary" height={50} depth={0.1} frequency={4} />
-      </section>
+    <main className="flex h-dvh flex-col overflow-hidden bg-paper text-ink">
+      <FolderHeader ref={headerRef} title={title} cardCount={filteredFlashcards.length} onOpenTags={openTagsDialog} />
 
-      <section className="relative z-10 -mt-5 min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-5 pb-7 sm:-mt-6 sm:px-8 sm:pb-9" aria-label="Flashcard list" onScroll={handleFlashcardListScroll}>
+      <section ref={listRef} className="folder-flashcard-list relative z-10 -mt-5 min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-5 pb-7 sm:-mt-6 sm:px-8 sm:pb-9" aria-label="Flashcard list">
         <div className="mx-auto max-w-5xl">
           {folder === null ? (
             <div className="border-2 border-dashed border-primary/45 bg-paper px-5 py-8 text-center">
@@ -98,7 +63,7 @@ export function FolderPage() {
               <Link className="mt-3 inline-block text-sm font-bold text-forest underline" to="/">Return to folders</Link>
             </div>
           ) : filteredFlashcards.length === 0 ? (
-            <div className="flashcard-surface flex min-h-36 flex-col items-center justify-center border-2 border-dashed border-primary/45 px-5 py-6 text-center" style={cardGlassStyle}>
+            <div className="flashcard-surface flex min-h-36 flex-col items-center justify-center border-2 border-dashed border-primary/45 px-5 py-6 text-center">
               <span className="grid size-10 place-items-center rounded-[var(--radius)] bg-sage text-forest">
                 <Layers className="size-5" strokeWidth={1.75} aria-hidden="true" />
               </span>
@@ -106,7 +71,7 @@ export function FolderPage() {
               <p className="mt-1 text-sm text-muted-foreground">{flashcards.length === 0 ? "Flashcards for this folder will appear here." : "Try choosing different tags."}</p>
             </div>
           ) : (
-            <div className="grid gap-2 sm:grid-cols-2 pb-[12rem]">
+            <div className="grid gap-2 sm:grid-cols-2">
               {filteredFlashcards.map((flashcard) => (
                 <FlashcardCard
                   key={flashcard.id}
@@ -119,6 +84,7 @@ export function FolderPage() {
             </div>
           )}
         </div>
+        <div ref={compensationRef} className="folder-scroll-compensation" aria-hidden="true" />
       </section>
 
       <div className="fixed inset-x-0 bottom-0 z-10 px-5 py-3 sm:px-8">

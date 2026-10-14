@@ -7,7 +7,6 @@ import { FloatingLabelInput, FloatingLabelTextarea } from "@/components/ui/float
 import { useStudyData } from "@/contexts/StudyDataContext"
 import type { Flashcard, ImageSelection, Tag } from "@/lib/db"
 import { getRandomTagColor, getTagColorClass } from "@/lib/tag-styles"
-import { dialogGlassStyle } from "@/lib/glass-styles"
 import { compressImage } from "@/lib/image-compression"
 
 type NewFlashcardDialogProps = {
@@ -201,7 +200,7 @@ export function NewFlashcardDialog(props: NewFlashcardDialogProps) {
 
   return (
     <Dialog open={props.isOpen} onOpenChange={(open) => !open && closeDialog()}>
-      <DialogContent className="dialog-surface flex h-[min(44rem,calc(100dvh-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" style={dialogGlassStyle} onOpenAutoFocus={(event) => event.preventDefault()}>
+      <DialogContent className="flex h-[min(44rem,calc(100dvh-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" onOpenAutoFocus={(event) => event.preventDefault()}>
         <DialogHeader className="shrink-0 pr-10">
           <DialogTitle className="font-display text-2xl font-black text-primary tracking-tight">{isEditing ? "Edit card" : "New card"}</DialogTitle>
         </DialogHeader>

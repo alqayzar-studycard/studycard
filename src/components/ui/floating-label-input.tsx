@@ -17,12 +17,12 @@ type FloatingLabelTextareaProps = React.ComponentPropsWithoutRef<typeof Textarea
 
 function FloatingLabelField(props: { label: string; fieldId: string; containerClassName?: string; children: React.ReactNode }) {
   return (
-    <div className={cn("relative", props.containerClassName)}>
-      <label className="absolute -top-2 left-3 z-10 px-1 text-sm font-black text-secondary" htmlFor={props.fieldId}>
-        {props.label}
-      </label>
+    <fieldset className={cn("min-w-0 rounded-[var(--radius)] border border-input bg-paper px-0", props.containerClassName)}>
+      <legend className="ml-3 px-1 text-sm font-black text-secondary">
+        <label htmlFor={props.fieldId}>{props.label}</label>
+      </legend>
       {props.children}
-    </div>
+    </fieldset>
   )
 }
 
@@ -33,7 +33,7 @@ const FloatingLabelInput = React.forwardRef<HTMLInputElement, FloatingLabelInput
 
   return (
     <FloatingLabelField label={label} fieldId={inputId} containerClassName={containerClassName}>
-      <Input ref={ref} id={inputId} className={cn("h-12 bg-paper px-4 py-3 text-lg font-black", className)} {...inputProps} />
+      <Input ref={ref} id={inputId} className={cn("h-10 rounded-none border-0 bg-transparent px-4 pb-3 pt-1 text-lg font-black", className)} {...inputProps} />
     </FloatingLabelField>
   )
 })
@@ -49,7 +49,7 @@ const FloatingLabelTextarea = React.forwardRef<HTMLTextAreaElement, FloatingLabe
       <Textarea
         ref={ref}
         id={textareaId}
-        className={cn("min-h-28 resize-y bg-paper border-2 px-4 py-3 text-lg font-black", className)}
+        className={cn("min-h-24 resize-y rounded-none border-0 bg-transparent px-4 pb-3 pt-1 text-lg font-black", className)}
         {...textareaProps}
       />
     </FloatingLabelField>

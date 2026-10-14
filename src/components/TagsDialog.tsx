@@ -29,7 +29,7 @@ export function TagsDialog(props: TagsDialogProps) {
 
   return (
     <Dialog open={props.isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="dialog-surface flex h-[min(32rem,calc(100dvh-2.5rem))] max-h-[calc(100dvh-2.5rem)] flex-col overflow-hidden" onOpenAutoFocus={(event) => event.preventDefault()}>
+      <DialogContent className="flex h-[min(32rem,calc(100dvh-2.5rem))] max-h-[calc(100dvh-2.5rem)] flex-col overflow-hidden" onOpenAutoFocus={(event) => event.preventDefault()}>
         <DialogHeader className="shrink-0 pr-10">
           <DialogTitle className="font-display text-3xl font-bold text-primary">Tags</DialogTitle>
         </DialogHeader>

@@ -2,7 +2,6 @@ import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
 import { cn } from "@/lib/utils"
-import { cardGlassStyle } from "@/lib/glass-styles"
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
@@ -11,15 +10,14 @@ const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
 >((props, ref) => {
-  const { className, sideOffset = 6, style, ...contentProps } = props
+  const { className, sideOffset = 6, ...contentProps } = props
 
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
         ref={ref}
         sideOffset={sideOffset}
-        className={cn("grain-overlay z-50 min-w-40 overflow-hidden rounded-[var(--radius)] border border-primary/35 bg-paper/65 p-1.5 font-display text-ink shadow-lg", className)}
-        style={{ ...cardGlassStyle, ...style }}
+        className={cn("z-50 min-w-40 overflow-hidden rounded-[var(--radius)] border border-primary/35 bg-paper p-1.5 font-display text-ink shadow-lg", className)}
         {...contentProps}
       />
     </DropdownMenuPrimitive.Portal>
