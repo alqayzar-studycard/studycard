@@ -87,7 +87,7 @@ export function FolderPage() {
         <div ref={compensationRef} className="folder-scroll-compensation" aria-hidden="true" />
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-10 px-5 py-3 sm:px-8">
+      <div className="fixed inset-x-0 bottom-0 z-30 px-5 py-3 sm:px-8">
         <div className="mx-auto flex w-full gap-3">
           <Button
             type="button"
