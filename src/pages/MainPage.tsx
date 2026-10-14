@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { BookOpen, Plus } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -14,6 +14,20 @@ export function MainPage() {
   const { folders, createFolder, updateFolder, removeFolder } = useStudyData()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [editingFolder, setEditingFolder] = useState<FolderType | null>(null)
+  const hasHandledReload = useRef(false)
+
+  useEffect(() => {
+    // A reload writes "false" first; the resulting page load switches it back
+    // to "true" without reloading, so this cannot loop.
+    if (hasHandledReload.current) return
+    hasHandledReload.current = true
+
+    const marker = window.localStorage.getItem("need-reload")
+    const shouldReload = marker !== "false"
+    window.localStorage.setItem("need-reload", shouldReload ? "false" : "true")
+
+    if (shouldReload) window.location.reload()
+  }, [])
 
   const updateFolderName = async (name: string) => {
     if (!editingFolder) return
