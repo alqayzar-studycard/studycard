@@ -5,6 +5,7 @@ type WaveDividerProps = {
   height?: number
   depth?: number
   frequency?: number
+  inverted?: boolean
 }
 
 /** A full-width SVG wave that can be used between two page sections. */
@@ -26,10 +27,15 @@ export function WaveDivider(props: WaveDividerProps) {
     const firstControl = end - waveWidth / 4
     const secondControl = start + waveWidth / 4
 
-    return `C${firstControl} ${trough} ${firstControl} ${trough} ${middle} 50C${secondControl} ${crest} ${secondControl} ${crest} ${start} 50`
+    const firstCurveHeight = props.inverted ? crest : trough
+    const secondCurveHeight = props.inverted ? trough : crest
+
+    return `C${firstControl} ${firstCurveHeight} ${firstControl} ${firstCurveHeight} ${middle} 50C${secondControl} ${secondCurveHeight} ${secondControl} ${secondCurveHeight} ${start} 50`
   }).join("")
 
-  const path = `M0 0H1440V50${waveSegments}Z`
+  const path = props.inverted
+    ? `M0 100H1440V50${waveSegments}Z`
+    : `M0 0H1440V50${waveSegments}Z`
 
   return (
     <svg
