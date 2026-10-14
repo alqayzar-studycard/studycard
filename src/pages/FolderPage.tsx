@@ -52,7 +52,7 @@ export function FolderPage() {
   }
 
   return (
-    <main className="flex h-dvh flex-col overflow-hidden bg-paper text-ink">
+    <main className="relative flex h-full flex-col overflow-hidden bg-paper text-ink">
       <FolderHeader ref={headerRef} title={title} cardCount={filteredFlashcards.length} onOpenTags={openTagsDialog} />
 
       <section ref={listRef} className="folder-flashcard-list relative z-10 -mt-5 min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-5 pb-7 sm:-mt-6 sm:px-8 sm:pb-9" aria-label="Flashcard list">
@@ -87,7 +87,7 @@ export function FolderPage() {
         <div ref={compensationRef} className="folder-scroll-compensation" aria-hidden="true" />
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 px-5 py-3 sm:px-8">
+      <div className="absolute inset-x-0 bottom-0 z-30 px-5 py-3 sm:px-8">
         <div className="mx-auto flex w-full gap-3">
           <Button
             type="button"

@@ -10,7 +10,7 @@ const DialogClose = DialogPrimitive.Close
 const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Content>, React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>>(({ className, children, ...props }, ref) => (
   <DialogPrimitive.Portal>
     <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-ink/45" />
-    <DialogPrimitive.Content ref={ref} className={cn("fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2.5rem)] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[var(--radius)] bg-paper p-6 shadow-2xl", className)} {...props}>
+    <DialogPrimitive.Content ref={ref} className={cn("fixed left-1/2 top-1/2 z-50 max-h-[calc(var(--app-height)-2.5rem)] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[var(--radius)] bg-paper p-6 shadow-2xl", className)} {...props}>
       {children}
       <DialogPrimitive.Close className="absolute right-4 top-4 rounded-[var(--radius)] p-2 text-muted-foreground hover:bg-accent focus-visible:outline-2 focus-visible:outline-forest">
         <X className="size-5" />

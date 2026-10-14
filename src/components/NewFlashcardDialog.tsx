@@ -200,7 +200,7 @@ export function NewFlashcardDialog(props: NewFlashcardDialogProps) {
 
   return (
     <Dialog open={props.isOpen} onOpenChange={(open) => !open && closeDialog()}>
-      <DialogContent className="flex h-[min(44rem,calc(100dvh-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" onOpenAutoFocus={(event) => event.preventDefault()}>
+      <DialogContent className="flex h-[min(44rem,calc(var(--app-height)-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" onOpenAutoFocus={(event) => event.preventDefault()}>
         <DialogHeader className="shrink-0 pr-10">
           <DialogTitle className="font-display text-2xl font-black text-primary tracking-tight">{isEditing ? "Edit card" : "New card"}</DialogTitle>
         </DialogHeader>
