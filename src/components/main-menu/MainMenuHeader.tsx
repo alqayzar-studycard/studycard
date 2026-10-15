@@ -13,7 +13,7 @@ export function MainMenuHeader(props: MainMenuHeaderProps) {
   const goToFolders = () => props.onSelectTab("folders")
 
   return (
-    <header className="bg-primary text-primary-foreground">
+    <header className="mx-3 mt-3 rounded-t-[var(--radius)] bg-primary text-primary-foreground sm:mx-5 sm:mt-5">
       <div className="mx-auto max-w-5xl px-5 pt-4 sm:px-8 sm:pt-5">
         <div className="pb-4 sm:pb-5">
           <Link className="inline-flex items-center gap-3" to="/" aria-label="Study home" onClick={goToFolders}>

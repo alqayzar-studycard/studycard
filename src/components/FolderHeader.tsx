@@ -39,7 +39,7 @@ export function FolderHeader(props: FolderHeaderProps) {
   }
 
   return (
-    <header ref={props.ref} className="folder-header relative z-0 shrink-0 bg-primary text-primary-foreground" aria-labelledby="folder-title">
+    <header ref={props.ref} className="folder-header relative z-0 mx-3 mt-3 shrink-0 rounded-t-[var(--radius)] bg-primary text-primary-foreground sm:mx-5 sm:mt-5" aria-labelledby="folder-title">
       <div className="mx-auto max-w-5xl px-5 py-4 sm:px-8 sm:py-5">
         <div className="pt-3 pb-8 sm:pt-5 sm:pb-10">
           <div ref={headingRef} className="folder-header-heading">

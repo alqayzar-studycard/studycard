@@ -26,7 +26,7 @@ export function MainMenuPanel(props: MainMenuPanelProps) {
       tabIndex={props.isActive ? 0 : -1}
       className="relative isolate flex h-full w-full min-w-0 shrink-0 snap-start snap-always flex-col"
     >
-      <div className="relative z-0 shrink-0 bg-primary text-primary-foreground">
+      <div className="relative z-0 mx-3 shrink-0 bg-primary text-primary-foreground sm:mx-5">
         <div className="mx-auto flex max-w-5xl items-end justify-between gap-5 px-5 pb-12 pt-2 sm:px-8 sm:pb-15">
           <Button
             type="button"
