@@ -8,7 +8,7 @@
   "scope": "/studycard/",
   "display": "standalone",
   "background_color": "#e8f3ef",
-  "theme_color": "#136f63",
+  "theme_color": "#004643",
   "icons": [
     {
       "src": "favicon.svg",
