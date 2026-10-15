@@ -118,6 +118,14 @@ html {
   overflow: hidden;
 }
 
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -142,6 +150,63 @@ body,
 
 .font-content {
   font-family: var(--font-content);
+}
+
+.main-menu-tabs {
+  --menu-peek: 4.5rem;
+  --menu-padding: 1.25rem;
+  position: relative;
+  height: 4rem;
+  margin-inline: calc(-1 * var(--menu-padding));
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black calc(100% - var(--menu-peek)), transparent);
+}
+
+.main-menu-tabs[data-active="maps"] {
+  mask-image: linear-gradient(to right, transparent, black var(--menu-peek));
+}
+
+.main-menu-tab {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: left 300ms ease, transform 300ms ease, opacity 300ms ease;
+}
+
+.main-menu-tab[aria-selected="false"] {
+  opacity: 0.55;
+}
+
+.main-menu-tab[data-tab="folders"] {
+  left: var(--menu-padding);
+}
+
+.main-menu-tab[data-tab="maps"] {
+  left: calc(100% - var(--menu-peek));
+}
+
+.main-menu-tabs[data-active="maps"] .main-menu-tab[data-tab="folders"] {
+  left: var(--menu-peek);
+  transform: translateX(-100%);
+}
+
+.main-menu-tabs[data-active="maps"] .main-menu-tab[data-tab="maps"] {
+  left: calc(var(--menu-peek) + 1rem);
+}
+
+@media (min-width: 40rem) {
+  .main-menu-tabs {
+    --menu-peek: 6rem;
+    --menu-padding: 2rem;
+    height: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-menu-tab {
+    transition: none;
+  }
 }
 
 .folder-header,
