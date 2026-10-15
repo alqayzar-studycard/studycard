@@ -31,6 +31,20 @@
   font-weight: 900;
 }
 
+@font-face {
+  font-family: "Bailleul";
+  src: url("./assets/fonts/fonts/WEB/Bailleul-Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bailleul";
+  src: url("./assets/fonts/fonts/WEB/Bailleul-Bold.woff2") format("woff2");
+  font-weight: 700 900;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -60,8 +74,9 @@
   --app-height: 100dvh;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-  --radius: 0.1rem;
-  --primary: #136f63;
+  --radius: 0.5rem;
+  --tag-radius: 0.5rem;
+  --primary: #004643;
   --primary-foreground: #ffffff;
   --accent: #d7ebe2;
   --input: rgb(19 111 99 / 25%);
@@ -69,7 +84,7 @@
   --muted-foreground: #5a756f;
   --canvas: #e8f3ef;
   --ink: #123f39;
-  --paper: #fbfdfc;
+  --paper: #F2EAE3;
   --forest: #136f63;
   --secondary: #7F6269;
   --sage: #cfe7de;
@@ -79,13 +94,14 @@
   --cancel: #DCDFE5;
   --cancel-foreground: #4b5563;
   --orange: #AF5D31;
-  --yellow: #B09231;
-  --green-alt: #0B7422;
+  --yellow: #A86E1F;
+  --green-alt: #2C7865;
   --folder-gold: #b9dfd4;
   --folder-terracotta: #a8d6ca;
   --folder-blue: #cce8e1;
   --folder-lilac: #d9eee8;
   --font-ui: Arial, Helvetica, sans-serif;
+  --font-content: "Bailleul", Georgia, serif;
 }
 
 /* Android Chrome can overestimate dvh on an installed app's initial load.
@@ -122,6 +138,10 @@ body,
 
 .font-ui {
   font-family: var(--font-ui);
+}
+
+.font-content {
+  font-family: var(--font-content);
 }
 
 .folder-header,

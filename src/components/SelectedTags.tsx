@@ -14,7 +14,7 @@ export function SelectedTags(props: SelectedTagsProps) {
   if (props.tagIds.length === 0) return null
 
   return (
-    <div className="mt-3 flex max-w-full gap-1.5 overflow-x-auto pb-1" aria-label="Selected tags">
+    <div className="font-content mt-3 flex max-w-full gap-1.5 overflow-x-auto pb-1" aria-label="Selected tags">
       {props.tagIds.map((tagId) => {
         const tag = getTagById(tagId)
 
@@ -23,7 +23,7 @@ export function SelectedTags(props: SelectedTagsProps) {
             key={tagId}
             type="button"
             onClick={() => props.onRemove(tagId)}
-            className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-[var(--radius)] border px-2 py-1 text-sm font-black ${getSolidTagColorClass(tag?.color)}`}
+            className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-[var(--tag-radius)] border px-2 py-1 text-sm font-black ${getSolidTagColorClass(tag?.color)}`}
           >
             {tag?.name ?? tagId}
             <X className="size-3" aria-hidden="true" />

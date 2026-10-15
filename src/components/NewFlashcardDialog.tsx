@@ -96,7 +96,7 @@ function FlashcardImageInput(props: FlashcardImageInputProps) {
       )}
       {isPreviewOpen && imageUrl && (
         <div className="fixed inset-0 z-[60] grid place-items-center bg-ink/85 p-6" role="dialog" aria-modal="true" aria-label={`${props.label} preview`} onClick={() => setIsPreviewOpen(false)}>
-          <img src={imageUrl} alt={`Selected ${props.label.toLocaleLowerCase()}`} className="max-h-full max-w-full object-contain" onClick={(event) => event.stopPropagation()} />
+          <img src={imageUrl} alt={`Selected ${props.label.toLocaleLowerCase()}`} className="max-h-full max-w-full object-contain" />
         </div>
       )}
     </div>
@@ -147,7 +147,7 @@ function FlashcardTagsInput(props: FlashcardTagsInputProps) {
       {props.tags.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-2" aria-label="Selected tags">
           {props.tags.map((tag) => (
-            <button key={tag.id} type="button" onClick={() => props.onChange(props.tags.filter((currentTag) => currentTag.id !== tag.id))} className={`inline-flex items-center gap-1 rounded-[var(--radius)] border px-2 py-1 text-sm font-bold transition-opacity hover:opacity-70 ${getTagColorClass(tag.color)}`}>
+            <button key={tag.id} type="button" onClick={() => props.onChange(props.tags.filter((currentTag) => currentTag.id !== tag.id))} className={`inline-flex items-center gap-1 rounded-[var(--tag-radius)] border px-2 py-1 text-sm font-bold transition-opacity hover:opacity-70 ${getTagColorClass(tag.color)}`}>
               {tag.name}
               <X className="size-3.5" aria-hidden="true" />
             </button>
@@ -200,7 +200,7 @@ export function NewFlashcardDialog(props: NewFlashcardDialogProps) {
 
   return (
     <Dialog open={props.isOpen} onOpenChange={(open) => !open && closeDialog()}>
-      <DialogContent className="flex h-[min(44rem,calc(var(--app-height)-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" onOpenAutoFocus={(event) => event.preventDefault()}>
+      <DialogContent className="font-content flex h-[min(44rem,calc(var(--app-height)-1.5rem))] w-[calc(100%-1.5rem)] max-w-xl flex-col gap-0 overflow-hidden border border-primary/20 p-6 sm:p-8" onOpenAutoFocus={(event) => event.preventDefault()}>
         <DialogHeader className="shrink-0 pr-10">
           <DialogTitle className="font-display text-2xl font-black text-primary tracking-tight">{isEditing ? "Edit card" : "New card"}</DialogTitle>
         </DialogHeader>

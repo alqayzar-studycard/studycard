@@ -29,7 +29,7 @@ export function TagsDialog(props: TagsDialogProps) {
 
   return (
     <Dialog open={props.isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="flex h-[min(32rem,calc(var(--app-height)-2.5rem))] max-h-[calc(var(--app-height)-2.5rem)] flex-col overflow-hidden" onOpenAutoFocus={(event) => event.preventDefault()}>
+      <DialogContent className="font-content flex h-[min(32rem,calc(var(--app-height)-2.5rem))] max-h-[calc(var(--app-height)-2.5rem)] flex-col overflow-hidden" onOpenAutoFocus={(event) => event.preventDefault()}>
         <DialogHeader className="shrink-0 pr-10">
           <DialogTitle className="font-display text-3xl font-bold text-primary">Tags</DialogTitle>
         </DialogHeader>
@@ -58,7 +58,7 @@ export function TagsDialog(props: TagsDialogProps) {
                         type="button"
                         aria-pressed={isSelected}
                         onClick={() => props.onToggleTag(tag.id)}
-                        className={`rounded-[var(--radius)] border px-3 py-1.5 text-sm font-black transition-all ${isSelected ? `ring-2 ring-ink/60 ring-offset-2 ring-offset-paper shadow-md ${getSolidTagColorClass(tag.color)}` : `opacity-60 hover:-translate-y-0.5 hover:opacity-100 hover:shadow-sm ${getTagColorClass(tag.color)}`}`}
+                        className={`rounded-[var(--tag-radius)] border px-3 py-1.5 text-sm font-black transition-all ${isSelected ? `ring-2 ring-ink/60 ring-offset-2 ring-offset-paper shadow-md ${getSolidTagColorClass(tag.color)}` : `opacity-60 hover:-translate-y-0.5 hover:opacity-100 hover:shadow-sm ${getTagColorClass(tag.color)}`}`}
                       >
                         {tag.name}
                       </button>

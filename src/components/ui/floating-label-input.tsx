@@ -18,7 +18,7 @@ type FloatingLabelTextareaProps = React.ComponentPropsWithoutRef<typeof Textarea
 function FloatingLabelField(props: { label: string; fieldId: string; containerClassName?: string; children: React.ReactNode }) {
   return (
     <fieldset className={cn("min-w-0 rounded-[var(--radius)] border border-input bg-paper px-0", props.containerClassName)}>
-      <legend className="ml-3 px-1 text-sm font-black text-secondary">
+      <legend className="font-display ml-3 px-1 text-sm font-black text-secondary">
         <label htmlFor={props.fieldId}>{props.label}</label>
       </legend>
       {props.children}

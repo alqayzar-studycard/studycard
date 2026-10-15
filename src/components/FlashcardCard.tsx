@@ -55,7 +55,7 @@ export function FlashcardCard(props: FlashcardCardProps) {
   }
 
   return (
-    <article className="flashcard-surface min-w-0 cursor-pointer border-4 border-primary/40 p-4 pt-2" role="button" tabIndex={0} aria-expanded={isExpanded} onClick={toggleExpanded} onKeyDown={handleKeyDown}>
+    <article className="flashcard-surface font-content min-w-0 cursor-pointer rounded-[var(--radius)] border-4 border-primary/40 p-4 pt-2" role="button" tabIndex={0} aria-expanded={isExpanded} onClick={toggleExpanded} onKeyDown={handleKeyDown}>
       <div className="flex justify-end gap-1" onClick={(event) => event.stopPropagation()} onKeyDown={(event) => event.stopPropagation()}>
         <button type="button" onClick={toggleExpanded} className="grid size-7 place-items-center rounded-[var(--radius)] text-forest hover:bg-sage" aria-label={isExpanded ? "Collapse flashcard" : "Expand flashcard"}>
           <ChevronDown className={`size-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -64,18 +64,18 @@ export function FlashcardCard(props: FlashcardCardProps) {
       </div>
       <div className="mt-1 flow-root">
         {rectoImageUrl && (isExpanded ? (
-          <button type="button" className="float-right mb-2 ml-3 size-16 overflow-hidden rounded-[var(--radius)]" onClick={(event) => { event.stopPropagation(); setPreviewImageUrl(rectoImageUrl) }} aria-label="Preview recto image">
+          <button type="button" className="float-right mb-2 ml-3 size-16 overflow-hidden rounded-[var(--radius)] border-2 border-primary" onClick={(event) => { event.stopPropagation(); setPreviewImageUrl(rectoImageUrl) }} aria-label="Preview recto image">
             <img src={rectoImageUrl} alt="" className="size-full object-cover" />
           </button>
-        ) : <img src={rectoImageUrl} alt="" className="float-right mb-2 ml-3 size-9 rounded-[var(--radius)] object-cover" />)}
-        <h2 className={`font-display text-xl font-black ${isExpanded ? "" : "flashcard-copy--collapsed"}`}>{props.flashcard.recto}</h2>
+        ) : <img src={rectoImageUrl} alt="" className="float-right mb-2 ml-3 size-9 rounded-[var(--radius)] object-cover border-2 border-primary" />)}
+        <h2 className={`text-xl font-extrabold ${isExpanded ? "" : "flashcard-copy--collapsed"}`}>{props.flashcard.recto}</h2>
       </div>
       <div className="mt-4 flow-root">
         {versoImageUrl && (isExpanded ? (
-          <button type="button" className="float-right mb-2 ml-3 size-16 overflow-hidden rounded-[var(--radius)]" onClick={(event) => { event.stopPropagation(); setPreviewImageUrl(versoImageUrl) }} aria-label="Preview verso image">
+          <button type="button" className="float-right mb-2 ml-3 size-16 overflow-hidden rounded-[var(--radius)] border-2 border-primary" onClick={(event) => { event.stopPropagation(); setPreviewImageUrl(versoImageUrl) }} aria-label="Preview verso image">
             <img src={versoImageUrl} alt="" className="size-full object-cover" />
           </button>
-        ) : <img src={versoImageUrl} alt="" className="float-right mb-2 ml-3 size-9 rounded-[var(--radius)] object-cover" />)}
+        ) : <img src={versoImageUrl} alt="" className="float-right mb-2 ml-3 size-9 rounded-[var(--radius)] object-cover border-2 border-primary" />)}
         <p className={`text-sm font-black text-ink/80 ${isExpanded ? "" : "flashcard-copy--collapsed"}`}>{props.flashcard.verso}</p>
       </div>
       {(props.flashcard.tags?.length ?? 0) > 0 && (
@@ -86,7 +86,7 @@ export function FlashcardCard(props: FlashcardCardProps) {
               <span
                 key={tagId}
                 className={cn(
-                  'shrink-0 whitespace-nowrap rounded-[var(--radius)] px-2 py-1 text-xs font-bold',
+                  'shrink-0 whitespace-nowrap rounded-[var(--tag-radius)] px-2 py-1 text-xs font-bold',
                   getTagColorClass(tag?.color)
                 )}
               >
@@ -98,7 +98,7 @@ export function FlashcardCard(props: FlashcardCardProps) {
       )}
       {previewImageUrl && createPortal(
         <div className="fixed inset-0 z-[100] grid place-items-center bg-ink/85 p-6" role="dialog" aria-modal="true" aria-label="Image preview" onClick={() => setPreviewImageUrl(null)}>
-          <img src={previewImageUrl} alt="" className="max-h-full max-w-full object-contain" onClick={(event) => event.stopPropagation()} />
+          <img src={previewImageUrl} alt="" className="max-h-full max-w-full object-contain" />
         </div>,
         document.body,
       )}
